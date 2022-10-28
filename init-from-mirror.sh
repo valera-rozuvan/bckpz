@@ -34,7 +34,8 @@ trap hndl_SIGTERM SIGTERM
 
 LIVE_FOLDER="/home/valera/dev/valera-rozuvan"
 
-GITHUB_ORG="valera-rozuvan"
+GIT_REMOTE_PATH="github:valera-rozuvan"
+GIT_REMOTE_NAME="mirror_github"
 
 USER_GPG_KEY="7225457C86D7B6F3"
 USER_FULL_NAME="Valera Rozuvan"
@@ -54,8 +55,8 @@ declare -a REPOS=(
   "blender-demos"
   "bookmarks-md"
   "campaigns-manager-ui"
-  "cgit-server-setup"
   "cgitrepos"
+  "cgit-server-setup"
   "chaos-visualizer"
   "css-glitch-text-image-effects"
   "d3-js-tests"
@@ -78,8 +79,8 @@ declare -a REPOS=(
   "irc-log-splitter"
   "javascript-experiments"
   "js-fiddles"
-  "js-patterns"
   "jslife"
+  "js-patterns"
   "JSTweener"
   "k-cmake-mode"
   "lambda-math"
@@ -140,23 +141,23 @@ for repo in "${REPOS[@]}"; do
     echo "  -> cloning from mirror"
 
     cd "${LIVE_FOLDER}"
-    git clone "github:${GITHUB_ORG}/${repo}.git" > /dev/null 2>&1
+    git clone "${GIT_REMOTE_PATH}/${repo}.git" > /dev/null 2>&1
     cd "${LIVE_REPO_PATH}"
 
     # Step 2.
-    echo "  -> add 'mirror_github' remote"
+    echo "  -> add '${GIT_REMOTE_NAME}' remote"
 
-    git remote add mirror_github "github:${GITHUB_ORG}/${repo}.git" > /dev/null 2>&1
-    git fetch --prune mirror_github > /dev/null 2>&1
+    git remote add "${GIT_REMOTE_NAME}" "${GIT_REMOTE_PATH}/${repo}.git" > /dev/null 2>&1
+    git fetch --prune "${GIT_REMOTE_NAME}" > /dev/null 2>&1
 
     # Step 3.
-    echo "  -> switch to 'mirror_github' remote"
+    echo "  -> switch to '${GIT_REMOTE_NAME}' remote"
 
     LIVE_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
-    git reset --hard "mirror_github/${LIVE_BRANCH_NAME}" > /dev/null 2>&1
+    git reset --hard "${GIT_REMOTE_NAME}/${LIVE_BRANCH_NAME}" > /dev/null 2>&1
     git clean -f -d > /dev/null 2>&1
-    git switch -C "${LIVE_BRANCH_NAME}" "mirror_github/${LIVE_BRANCH_NAME}" > /dev/null 2>&1
+    git switch -C "${LIVE_BRANCH_NAME}" "${GIT_REMOTE_NAME}/${LIVE_BRANCH_NAME}" > /dev/null 2>&1
 
     # Step 4.
     echo "  -> remove 'origin' remote"
@@ -179,7 +180,7 @@ for repo in "${REPOS[@]}"; do
       echo "	gpgsign = true";
     } >> $GIT_CONFIG
 
-    # Step 6. We don't want GitHub to rate limit us because of too many requests.
+    # Step 6. We don't want the remote to rate limit us because of too many requests.
     echo "  -> Sleep 2 seconds."
     sleep 2
   fi

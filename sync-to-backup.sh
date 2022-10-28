@@ -35,6 +35,8 @@ trap hndl_SIGTERM SIGTERM
 LIVE_FOLDER="/home/valera/dev/valera-rozuvan"
 BACKUP_FOLDER="/media/valera/data/valera-rozuvan"
 
+GIT_REMOTE_NAME="mirror_backup"
+
 # You can get an up to date list using the command:
 #
 #   ls -ahl /home/valera/dev/valera-rozuvan | tail -n +4 | awk '{print $9}' | sed -e 's/$/\"/g' | sed -e 's/^/  \"/g'
@@ -47,8 +49,8 @@ declare -a REPOS=(
   "blender-demos"
   "bookmarks-md"
   "campaigns-manager-ui"
-  "cgit-server-setup"
   "cgitrepos"
+  "cgit-server-setup"
   "chaos-visualizer"
   "css-glitch-text-image-effects"
   "d3-js-tests"
@@ -59,6 +61,7 @@ declare -a REPOS=(
   "dotfiles-emacs"
   "emacs_config"
   "eth-pool-docker-infra"
+  "express-v4-mongodb-starter"
   "fetch-all-github-repos"
   "FractalViewer"
   "gen2fa"
@@ -70,8 +73,8 @@ declare -a REPOS=(
   "irc-log-splitter"
   "javascript-experiments"
   "js-fiddles"
-  "js-patterns"
   "jslife"
+  "js-patterns"
   "JSTweener"
   "k-cmake-mode"
   "lambda-math"
@@ -143,9 +146,9 @@ for repo in "${REPOS[@]}"; do
     fi
 
     # we will add a backup upstream, if one already doesn't exist
-    git remote add bckp "${BACKUP_REPO_PATH}" > /dev/null 2>&1 || true
+    git remote add "${GIT_REMOTE_NAME}" "${BACKUP_REPO_PATH}" > /dev/null 2>&1 || true
 
-    UP_TO_DATE=$({ git push bckp "${LIVE_BRANCH_NAME}" 1>&2; } 2>&1 | grep -i "Everything up-to-date" || true)
+    UP_TO_DATE=$({ git push "${GIT_REMOTE_NAME}" "${LIVE_BRANCH_NAME}" 1>&2; } 2>&1 | grep -i "Everything up-to-date" || true)
 
     if [[ -z "$UP_TO_DATE" || "$UP_TO_DATE" == " " ]]; then
       echo -e "  -> synced to backup, branch '${LIVE_BRANCH_NAME}'\n"
