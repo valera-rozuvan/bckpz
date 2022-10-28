@@ -36,7 +36,7 @@ LIVE_FOLDER="/home/valera/dev/valera-rozuvan"
 
 GITHUB_ORG="valera-rozuvan"
 
-USER_GPG_KEY="A0CEA06B4F14BB0C"
+USER_GPG_KEY="7225457C86D7B6F3"
 USER_FULL_NAME="Valera Rozuvan"
 USER_EMAIL="valera@rozuvan.net"
 
@@ -66,6 +66,7 @@ declare -a REPOS=(
   "dotfiles-emacs"
   "emacs_config"
   "eth-pool-docker-infra"
+  "express-v4-mongodb-starter"
   "fetch-all-github-repos"
   "FractalViewer"
   "gen2fa"
