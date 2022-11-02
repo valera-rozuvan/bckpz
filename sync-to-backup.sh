@@ -60,12 +60,10 @@ declare -a REPOS=(
   "dotfiles"
   "dotfiles-emacs"
   "emacs_config"
-  "eth-pool-docker-infra"
   "express-v4-mongodb-starter"
   "fetch-all-github-repos"
   "FractalViewer"
   "gen2fa"
-  "geth-sync-status-orchestrator"
   "gjs-test-examples"
   "howtos"
   "html5-requirejs-jquery-template"
@@ -86,7 +84,6 @@ declare -a REPOS=(
   "ncurses-draw"
   "ng2-es5-test"
   "node-postgres-redis-docker-compose"
-  "oep-api-next"
   "old-sites"
   "online-counter"
   "opengl-3-tests"
@@ -122,7 +119,6 @@ declare -a REPOS=(
   "valera-rozuvan-net"
   "visual-studio-code-config"
   "web-frameworks-overview"
-  "wt-ipfs-docs"
 )
 
 count=1
