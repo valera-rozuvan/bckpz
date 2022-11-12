@@ -66,6 +66,7 @@ declare -a REPOS=(
   "dotfiles"
   "dotfiles-emacs"
   "emacs_config"
+  "experiments"
   "express-v4-mongodb-starter"
   "fetch-all-github-repos"
   "FractalViewer"
