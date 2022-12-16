@@ -58,20 +58,20 @@ declare -a REPOS=(
   "FractalViewer"
   "gen2fa"
   "howtos"
-  "to-study"
   "JSTweener"
   "lambda-math"
   "load-directory-mu"
   "mandelbulb-4d"
   "mdlinkc"
+  "my-jupyter-notebooks"
   "old-sites"
   "react-webpack-starter"
-  "my-jupyter-notebooks"
   "sharky"
+  "talks"
   "text-crypt"
+  "to-study"
   "valera-rozuvan"
   "valera-rozuvan-net"
-  "talks"
 )
 
 count=1
