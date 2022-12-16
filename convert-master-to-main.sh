@@ -33,6 +33,7 @@ trap hndl_SIGTERM SIGTERM
 # ----------------------------------------------------------------------------------------------
 
 LIVE_FOLDER="/home/valera/dev/valera-rozuvan"
+GIT_REMOTE_NAME="mirror_github"
 
 # You can get an up to date list using the command:
 #
@@ -86,7 +87,7 @@ for repo in "${REPOS[@]}"; do
   fi
 
   git checkout -b main
-  git push --force mirror_github main
+  git push --force "${GIT_REMOTE_NAME}" main
 
   echo "Please change default branch to 'main'. Visit:"
   echo "https://github.com/valera-rozuvan/${repo}/settings/branches"
@@ -94,12 +95,12 @@ for repo in "${REPOS[@]}"; do
     read -p "Continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] && break
   done
 
-  git fetch mirror_github
-  git branch -u mirror_github/main main
-  git remote set-head mirror_github -a
+  git fetch "${GIT_REMOTE_NAME}"
+  git branch -u "${GIT_REMOTE_NAME}/main" main
+  git remote set-head "${GIT_REMOTE_NAME}" -a
 
   git branch -D master
-  git push mirror_github --delete master
+  git push "${GIT_REMOTE_NAME}" --delete master
 
   count=$((count+1))
 done
