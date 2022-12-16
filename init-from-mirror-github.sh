@@ -109,7 +109,11 @@ for repo in "${REPOS[@]}"; do
 
     # Step 5. Add other mirrors.
 
-    git remote add mirror_gitlab "gitlab:valera-rozuvan/${repo}.git"
+    echo "  -> add 'mirror_gitlab' remote"
+    git remote add mirror_gitlab "gitlab:valera-rozuvan/${repo}.git" > /dev/null 2>&1
+
+    echo "  -> add 'mirror_backup' remote"
+    git remote add mirror_backup "/media/valera/data/valera-rozuvan/${repo}.git" > /dev/null 2>&1
 
     # Step 6.
     echo "  -> setup commit author details"

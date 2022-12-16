@@ -33,8 +33,8 @@ trap hndl_SIGTERM SIGTERM
 # ----------------------------------------------------------------------------------------------
 
 LIVE_FOLDER="/home/valera/dev/valera-rozuvan"
-BACKUP_FOLDER="/media/valera/data/valera-rozuvan"
 
+GIT_REMOTE_PATH="/media/valera/data/valera-rozuvan"
 GIT_REMOTE_NAME="mirror_backup"
 
 # You can get an up to date list using the command:
@@ -72,10 +72,9 @@ count=1
 for repo in "${REPOS[@]}"; do
   echo "[${count} of ${#REPOS[@]}]: '${repo}'"
 
-  BACKUP_REPO_PATH="${BACKUP_FOLDER}/${repo}.git"
   LIVE_REPO_PATH="${LIVE_FOLDER}/${repo}"
   if [[ -d "${LIVE_REPO_PATH}" ]]; then
-    cd "${BACKUP_REPO_PATH}"
+    cd "${GIT_REMOTE_PATH}/${repo}.git"
     BACKUP_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
     cd "${LIVE_REPO_PATH}"
@@ -87,9 +86,6 @@ for repo in "${REPOS[@]}"; do
       echo "  -> Error! backup branch '${BACKUP_BRANCH_NAME}' and live branch '${LIVE_BRANCH_NAME}' name mismatch! Please fix."
       exit 1
     fi
-
-    # we will add a backup upstream, if one already doesn't exist
-    git remote add "${GIT_REMOTE_NAME}" "${BACKUP_REPO_PATH}" > /dev/null 2>&1 || true
 
     UP_TO_DATE=$({ git push "${GIT_REMOTE_NAME}" "${LIVE_BRANCH_NAME}" 1>&2; } 2>&1 | grep -i "Everything up-to-date" || true)
 
