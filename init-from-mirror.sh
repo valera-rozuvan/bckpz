@@ -107,7 +107,11 @@ for repo in "${REPOS[@]}"; do
 
     git remote remove origin > /dev/null 2>&1
 
-    # Step 5.
+    # Step 5. Add other mirrors.
+
+    git remote add mirror_gitlab "gitlab:valera-rozuvan/${repo}.git"
+
+    # Step 6.
     echo "  -> setup commit author details"
 
     GIT_CONFIG="./.git/config"
