@@ -60,6 +60,7 @@ declare -a REPOS=(
   "my-jupyter-notebooks"
   "old-sites"
   "react-webpack-starter"
+  "rzvn"
   "sharky"
   "talks"
   "text-crypt"
