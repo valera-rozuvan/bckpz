@@ -51,6 +51,7 @@ declare -a REPOS=(
   "FractalViewer"
   "gen2fa"
   "howtos"
+  "htz-dns-manager"
   "JSTweener"
   "lambda-math"
   "load-directory-mu"
