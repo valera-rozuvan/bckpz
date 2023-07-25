@@ -64,6 +64,7 @@ declare -a REPOS=(
   "sharky"
   "talks"
   "text-crypt"
+  "three-js-webpack-starter"
   "to-study"
   "valera-rozuvan"
   "valera-rozuvan-net"
