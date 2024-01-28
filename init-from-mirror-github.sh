@@ -66,7 +66,6 @@ declare -a REPOS=(
   "mdlinkc"
   "my-jupyter-notebooks"
   "old-sites"
-  "pgm"
   "react-webpack-starter"
   "rzvn"
   "sharky"
